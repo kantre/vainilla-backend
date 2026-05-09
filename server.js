@@ -13,14 +13,7 @@ import userRoutes from "./routes/userRoutes.js";
 const app = express();
 
 // ✅ CORS
-app.use(cors({
-  origin: [
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    "https://vainilla-store.netlify.app"
-  ],
-  credentials: false
-}));
+app.use(cors());
 
 // ✅ JSON
 app.use(express.json());
