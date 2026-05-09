@@ -14,11 +14,11 @@ const app = express();
 
 // ✅ CORS
 app.use(cors({
- origin: [
-  "http://127.0.0.1:5500",
-  "http://localhost:5500",
-  "https://TU-SITIO.netlify.app"
-],
+  origin: [
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "https://vainilla-store.netlify.app"
+  ],
   credentials: true
 }));
 
