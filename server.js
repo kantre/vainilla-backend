@@ -19,7 +19,7 @@ app.use(cors({
     "http://localhost:5500",
     "https://vainilla-store.netlify.app"
   ],
-  credentials: true
+  credentials: false
 }));
 
 // ✅ JSON
