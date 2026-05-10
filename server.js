@@ -7,31 +7,38 @@ import cors from "cors";
 import bcrypt from "bcrypt";
 
 import { query } from "./config/db.js";
-
 import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 
-// ✅ CORS
+
+// ✅ CORS TOTALMENTE ABIERTO
 app.use(cors());
+
 
 // ✅ JSON
 app.use(express.json());
 
-// ✅ ruta base
+
+// ✅ TEST CORS
+app.options("*", cors());
+
+
+// ✅ Ruta base
 app.get("/", (req, res) => {
   res.send("🚀 API funcionando");
 });
 
+
 // ✅ rutas
 app.use("/api/users", userRoutes);
 
-// ✅ iniciar DB
+
+// ✅ init db
 async function initDB() {
 
   try {
 
-    // ✅ crear tabla
     await query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
@@ -44,13 +51,9 @@ async function initDB() {
 
     console.log("🟢 Tabla users lista");
 
-    // ✅ password admin
-    const hashedPassword = await bcrypt.hash(
-      "123456",
-      10
-    );
+    const hashedPassword =
+      await bcrypt.hash("123456", 10);
 
-    // ✅ crear admin si no existe
     await query(
       `
       INSERT INTO users
@@ -77,7 +80,8 @@ async function initDB() {
   }
 }
 
-// ✅ iniciar servidor
+
+// ✅ servidor
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, async () => {
